@@ -2,8 +2,6 @@ document.addEventListener ('DOMContentLoaded', function (){
     
 getMedications()
 
-
-
 })
 
 let medications =[]
@@ -11,6 +9,7 @@ let medications =[]
 
 document.querySelector('#form').addEventListener ('submit', function (event){
     event.preventDefault()
+    getMedications()
     const medicationName = document.querySelector('#medication-name').value
     const pillCount = document.querySelector('#pill-count').value
     const pillsPerDose = document.querySelector('#pill-per-dose').value
@@ -19,13 +18,13 @@ document.querySelector('#form').addEventListener ('submit', function (event){
   
 
     const newMedication = {
-        id: medication.id,
         name: medicationName,
         totalPills: Number(pillCount),
         pillsPerDose: Number(pillsPerDose),
         frequency: Number(frequency),
         dosesTaken: 0
     }
+    clearMedications()
 
     fetch ('http://localhost:3000/medications', {
         method : 'POST',
@@ -36,22 +35,13 @@ document.querySelector('#form').addEventListener ('submit', function (event){
         body : JSON.stringify (newMedication)
             
     }).then((response) => response.json())
-    .then((data)=> {
-        medications.push(data)
-        displayMedication(data)
-        event.target.reset()
-    })
-
-
-
-
-
-    // if (event.target.classList.contains('form-control')){
-    //     const addedMedication = medications.find((med)=> med.id === event.target.id)
-    //     addMedicationToList(addedMedication)
-    // }
+    .then((data)=>{displayMedication(data)
+        getMedications()
 })
 
+
+       
+    })
 
 
 function getMedications () {
@@ -63,6 +53,7 @@ function getMedications () {
 
     }) .then((response)=>response.json())
     .then ((data)=>(data))
+  
 
 }
 
@@ -84,3 +75,33 @@ function displayMedication (medication) {
 
     listOfMedications.appendChild(row)
 }
+
+function clearMedications() {
+    const listOfMedications = document.querySelector('tbody#medication-list');
+    listOfMedications.innerHTML = ''
+}
+function updateMedication(id, updatedData) {
+    fetch(`http://localhost:3000/medications/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData) 
+    })
+    .then(response => response.json())
+    .then(updatedMedication => {
+        console.log('Updated Medication:', updatedMedication);
+        getMedications(); 
+
+    })
+}
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-taken')) {
+        const medicationId = event.target.dataset.id; 
+        updateMedication(medicationId, { dosesTaken: 1 });
+    }
+});
+  
+
+

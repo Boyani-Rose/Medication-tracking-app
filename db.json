@@ -130,6 +130,94 @@
       "pillsPerDose": 0,
       "frequency": null,
       "dosesTaken": 0
+    },
+    {
+      "id": "dcbc",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 1,
+      "dosesTaken": 0
+    },
+    {
+      "id": "bee8",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 1,
+      "dosesTaken": 0
+    },
+    {
+      "id": "689a",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 2,
+      "frequency": 1,
+      "dosesTaken": 0
+    },
+    {
+      "id": "dff8",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 2,
+      "dosesTaken": 0
+    },
+    {
+      "id": "4b67",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 2,
+      "frequency": 3,
+      "dosesTaken": 0
+    },
+    {
+      "id": "2b24",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 1,
+      "dosesTaken": 0
+    },
+    {
+      "id": "f08c",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 2,
+      "dosesTaken": 0
+    },
+    {
+      "id": "6889",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 2,
+      "dosesTaken": 0
+    },
+    {
+      "id": "cd4e",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 2,
+      "frequency": 1,
+      "dosesTaken": 0
+    },
+    {
+      "id": "2691",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 2,
+      "dosesTaken": 0
+    },
+    {
+      "id": "7e15",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 2,
+      "frequency": 3,
+      "dosesTaken": 0
     }
   ]
 }
