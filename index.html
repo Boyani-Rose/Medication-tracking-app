@@ -18,6 +18,16 @@
                   <label class="visually-hidden" for="autoSizingInput">Medication Name</label>
                   <input type="text" class="form-control" id="autoSizingInput" placeholder="Name of Medication">
                 </div>
+
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingInput">Pill count</label>
+                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Enter Total No. of pills">
+                  </div>
+
+                  <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingInput">No. of pills per dose</label>
+                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Pills per dose">
+                  </div>
                 
                 <div class="col-auto">
                   <label  class="visually-hidden" for="autoSizingSelect">Frequency</label>
@@ -45,6 +55,10 @@
                     <th scope="col">#</th>
                     <th scope="col">Medication name</th>
                     <th scope="col">Frequency</th>
+                    <th scope="col">Doses taken today</th>
+
+                    <th scope="col">Pills left</th>
+
                     <th scope="col">Mark medication as taken</th>
                   </tr>
                 </thead>
@@ -53,6 +67,8 @@
                     <th scope="row">1</th>
                     <td>Paracetamol 1g</td>
                     <td>Thrice a day</td>
+                    <td>two</td>
+                    <td>10 pills remaining</td>
                     <td><button>Taken</button></td>
                   </tr>
                   
