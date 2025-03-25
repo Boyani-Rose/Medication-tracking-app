@@ -2,16 +2,42 @@ document.addEventListener ('DOMContentLoaded', function (){
     
 getMedications()
 
-document.querySelector('#form').addEventListener ('click', function (event){
+
+
+})
+let medications = []
+
+const medicationName = document.querySelector('#medication-name').value
+const pillCount = document.querySelector('#pill-count').value
+const pillsPerDose = document.querySelector('#pill-per-dose').value
+const frequency = document.querySelector('#autoSizingSelect').value
+
+if (!medicationName || !pillCount || !pillsPerDose || !frequency) {
+    alert("Please fill in all fields.") 
+    return; 
+}
+
+const newMedication = {
+    id: Date.now(), // Unique ID
+    name: medicationName,
+    totalPills: Number(pillCount),
+    pillsPerDose: Number(pillsPerDose),
+    frequency: Number(frequency),
+    dosesTaken: 0
+}
+
+medications.push (newMedication)
+
+addMedicationToList(newMedication)
+
+event.target.reset()
+document.querySelector('#form').addEventListener ('submit', function (event){
     event.preventDefault()
     if (event.target.classList.contains('form-control')){
         const addedMedication = medications.find((med)=> med.id === event.target.id)
         addMedicationToList(addedMedication)
     }
 })
-
-})
-let medications = []
 
 
 
@@ -35,10 +61,10 @@ function addMedicationToList () {
             'Accept' : 'application/json',
             'Content-Type' : 'application/json'
         },
-        body : JSON.stringify ({
-
-        })
+        body : JSON.stringify (newMedication)
+            
     }).then((response) => response.json())
+    .then((data) => console.log ('Medication added', data))
 }
 
 function displayMedication (medications = []) {
