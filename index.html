@@ -15,23 +15,23 @@
 
             <form class="row gy-2 gx-3 align-items-center">
                 <div class="col-auto">
-                  <label class="visually-hidden" for="autoSizingInput">Medication Name</label>
-                  <input type="text" class="form-control" id="autoSizingInput" placeholder="Name of Medication">
+                  <label class="visually-hidden" for="medication-name">Medication Name</label>
+                  <input type="text" class="form-control" id="medication-name" placeholder="Name of Medication">
                 </div>
 
                 <div class="col-auto">
-                    <label class="visually-hidden" for="autoSizingInput">Pill count</label>
-                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Enter Total No. of pills">
+                    <label class="visually-hidden" for="pill-count">Pill count</label>
+                    <input type="text" class="form-control" id="pill-count" placeholder="Enter Total No. of pills">
                   </div>
 
                   <div class="col-auto">
-                    <label class="visually-hidden" for="autoSizingInput">No. of pills per dose</label>
-                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Pills per dose">
+                    <label class="visually-hidden" for="pill-per-dose">No. of pills per dose</label>
+                    <input type="text" class="form-control" id="pill-per-dose" placeholder="Pills per dose">
                   </div>
                 
                 <div class="col-auto">
                   <label  class="visually-hidden" for="autoSizingSelect">Frequency</label>
-                  <select class="form-select" id="autoSizingSelect">
+                  <select class="form-control" id="autoSizingSelect">
                     <option selected>Choose...</option>
                     <option value="1">Once a day</option>
                     <option value="2">Twice a day</option>
@@ -55,21 +55,28 @@
                     <th scope="col">#</th>
                     <th scope="col">Medication name</th>
                     <th scope="col">Frequency</th>
+                    <th scope="col">Scheduled time</th>
+
                     <th scope="col">Doses taken today</th>
 
                     <th scope="col">Pills left</th>
 
                     <th scope="col">Mark medication as taken</th>
+                    <th scope="col">Record any adverse reactions</th>
+
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="medication-list">
                   <tr>
                     <th scope="row">1</th>
                     <td>Paracetamol 1g</td>
                     <td>Thrice a day</td>
+                    <td>10:00pm</td>
                     <td>two</td>
                     <td>10 pills remaining</td>
                     <td><button>Taken</button></td>
+                    <td>Fatigue</td>
+
                   </tr>
                   
                 </tbody>

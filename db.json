@@ -1,0 +1,60 @@
+{
+  "medications": [
+    {
+      "id": "1",
+      "name": "Paracetamol",
+      "frequency": 3,
+      "timeToTake": [
+        "08:00 AM",
+        "02:00 PM",
+        "08:00 PM"
+      ],
+      "remainingDoses": 3,
+      "status": "not taken"
+    },
+    {
+      "id": "2",
+      "name": "Ibuprofen",
+      "frequency": 2,
+      "timeToTake": [
+        "10:00 AM",
+        "06:00 PM"
+      ],
+      "remainingDoses": 2,
+      "status": "not taken"
+    },
+    {
+      "id": "3",
+      "name": "Amoxicillin",
+      "frequency": 3,
+      "timeToTake": [
+        "07:00 AM",
+        "01:00 PM",
+        "07:00 PM"
+      ],
+      "remainingDoses": 3,
+      "status": "not taken"
+    },
+    {
+      "id": "e169"
+    },
+    {
+      "id": "8821"
+    },
+    {
+      "id": "86ec"
+    },
+    {
+      "id": "9830"
+    },
+    {
+      "id": "89ef"
+    },
+    {
+      "id": "f462"
+    },
+    {
+      "id": "da3a"
+    }
+  ]
+}
