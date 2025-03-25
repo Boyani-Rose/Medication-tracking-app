@@ -3,9 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Track medications</title>
+    <link src="/css/style.css" rel="stylesheet"/>
+
 </head>
 <body>
-    
+    <div class="container">
+
+        <div id="form">
+
+            <form class="row gy-2 gx-3 align-items-center">
+                <div class="col-auto">
+                  <label class="visually-hidden" for="autoSizingInput">Medication Name</label>
+                  <input type="text" class="form-control" id="autoSizingInput" placeholder="Name of Medication">
+                </div>
+                
+                <div class="col-auto">
+                  <label class="visually-hidden" for="autoSizingSelect">Frequency</label>
+                  <select class="form-select" id="autoSizingSelect">
+                    <option selected>Choose...</option>
+                    <option value="1">Once a day</option>
+                    <option value="2">Twice a day</option>
+                    <option value="3">Thrice a day</option>
+                    
+                  </select>
+                </div>
+               
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary">Set Reminder</button>
+                </div>
+              </form>
+
+        </div>
+
+        <div id="table">
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Medication name</th>
+                    <th scope="col">Frequency</th>
+                    <th scope="col">Mark medication as taken</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Paracetamol 1g</td>
+                    <td>Thrice a day</td>
+                    <td><button>Taken</button></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+
+        </div>
+
+    </div>
+   <script src="/js/index.js"></script>
 </body>
 </html>
