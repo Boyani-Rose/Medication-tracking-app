@@ -1,27 +1,15 @@
 {
   "medications": [
     {
-      "id": "48d1",
-      "name": "tinidazole",
-      "totalPills": 30,
-      "pillsPerDose": 2,
-      "frequency": 2,
-      "dosesTaken": 11,
-      "reminderTimes": [
-        "<s>08:00</s>",
-        "<s>14:00</s>"
-      ]
-    },
-    {
       "id": "5cf1",
       "name": "tinidazole",
       "totalPills": 30,
       "pillsPerDose": 2,
       "frequency": 2,
-      "dosesTaken": 1,
+      "dosesTaken": 2,
       "reminderTimes": [
         "<s>08:00</s>",
-        "14:00"
+        "<s>14:00</s>"
       ]
     },
     {

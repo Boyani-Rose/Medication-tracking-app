@@ -1,11 +1,12 @@
 header {
-    width: 100%;
-    background: linear-gradient(135deg, #007bff, #0056b3);
+    background-color: #007bff; /* Bootstrap primary blue */
     color: white;
+    padding: 15px 0;
     text-align: center;
-    padding: 20px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 15px 15px;
+    width: 100%;
+    position: relative; /* Ensure it stays in the normal flow */
+    z-index: 10;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -27,8 +28,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Make sure content starts below the header */
-    padding-top: 100px; /* Push content below the fixed header */
+    justify-content: flex-start; 
+    padding: 0px;
+    margin: 0;
 }
 * {
     margin: 0;
@@ -51,7 +53,7 @@ body {
 
 
 .container {
-   margin-top: 100px;
+   margin-top: 70px;
 
 }
 
