@@ -1,4 +1,5 @@
-document.addEventListener ('DOMContentLoaded', function (){
+document.addEventListener ('DOMContentLoaded', function (event){
+   event.preventDefault()
     
 getMedications()
 
@@ -7,7 +8,7 @@ getMedications()
 let medications =[]
 
 
-document.querySelector('#form').addEventListener ('submit', function (event){
+document.querySelector('#form').addEventListener ('submit', async function (event){
     event.preventDefault()
     getMedications()
     const medicationName = document.querySelector('#medication-name').value
@@ -26,18 +27,17 @@ document.querySelector('#form').addEventListener ('submit', function (event){
     }
     clearMedications()
 
-    fetch ('http://localhost:3000/medications', {
-        method : 'POST',
-        headers :{
-            'Accept' : 'application/json',
-            'Content-Type' : 'application/json'
+    const response = await fetch('http://localhost:3000/medications', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body : JSON.stringify (newMedication)
-            
-    }).then((response) => response.json())
-    .then((data)=>{displayMedication(data)
-        getMedications()
-})
+        body: JSON.stringify(newMedication)
+    })
+    const data = await response.json()
+    displayMedication(data)
+    getMedications()
 
 
        
@@ -70,6 +70,7 @@ function displayMedication (medication) {
         <td>${medication.dosesTaken || 0}</td>
         <td>${medication.totalPills - (medication.dosesTaken * medication.pillsPerDose)}</td>
         <td><button class="btn-taken" data-id="${medication.id}">Taken</button></td>
+        <td><button class="btn-delete" data-id="${medication.id}">Delete</button></td>
         <td>Fatigue</td>
     `;
 
@@ -103,5 +104,19 @@ document.addEventListener('click', function(event) {
     }
 });
   
+function deleteMedication(id) {
+    fetch(`http://localhost:3000/medications/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+}
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-delete')) {
+        const medicationId = event.target.dataset.id
+        deleteMedication(medicationId);
+    }
+})
 
 
