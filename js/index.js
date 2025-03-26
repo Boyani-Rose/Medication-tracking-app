@@ -162,34 +162,39 @@ function updateReminderTimes(reminderTimes) {
 }
 
 async function checkReminders() {
-    console.log("Checking reminders...");
+    console.log("Reminder system started...");
+    
     setInterval(async function () {
         const now = new Date();
-        const currentTime = now.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-        });
+        const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+
+        console.log("Checking for reminders at:", currentTime);
 
         try {
             const response = await fetch('http://localhost:3000/medications');
             const medications = await response.json();
 
             medications.forEach(medication => {
-                if (medication.reminderTimes && medication.reminderTimes.includes(currentTime)) {
-                    const notificationKey = `notified-${medication.id}-${currentTime}`;
-                    
-                    if (!localStorage.getItem(notificationKey)) {
-                        showNotification(`Time to take: ${medication.name}`);
-                        localStorage.setItem(notificationKey, "true");
-                    }
+                if (medication.reminderTimes) {
+                    medication.reminderTimes.forEach(time => {
+                        if (time === currentTime) {
+                            const notificationKey = `notified-${medication.id}-${currentTime}`;
+                            
+                            if (!localStorage.getItem(notificationKey)) {
+                                console.log(`Triggering alert for: ${medication.name} at ${currentTime}`);
+                                showNotification(`Time to take: ${medication.name}`);
+                                localStorage.setItem(notificationKey, "true");
+                            }
+                        }
+                    });
                 }
             });
         } catch (error) {
-            console.error("Error fetching medications:", error);
+            console.error("Error fetching medications for reminders:", error);
         }
     }, 60000);
 }
+
 
 function showNotification(message) {
     if (Notification.permission === "granted") {
@@ -203,19 +208,12 @@ function showNotification(message) {
             console.error("Error showing notification:", error);
         }
     } else {
-        console.warn("Notifications are blocked by the browser.");
+        console.warn("Notifications blocked. Playing sound instead.");
         playNotificationSound();
+        alert(message); 
     }
 }
 
-function playNotificationSound() {
-    try {
-        const audio = new Audio('/assets/notification.mp3');
-        audio.play();
-    } catch (error) {
-        console.error("Error playing notification sound:", error);
-    }
-}
 
 function resetAtMidnight() {
     setInterval(async function () {
