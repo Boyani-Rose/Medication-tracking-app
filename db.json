@@ -1,20 +1,89 @@
 {
   "medications": [
     {
-      "id": "b0e8",
+      "id": "123e",
       "name": "Amoxicillin",
-      "totalPills": 15,
-      "pillsPerDose": 2,
-      "frequency": 1,
-      "dosesTaken": 9
-    },
-    {
-      "id": "a00c",
-      "name": "eno tabs",
-      "totalPills": 5,
+      "totalPills": 24,
       "pillsPerDose": 1,
       "frequency": 3,
-      "dosesTaken": 1
+      "dosesTaken": 15,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "<s>14:00</s>",
+        "<s>20:00</s>"
+      ]
+    },
+    {
+      "id": "4e96",
+      "name": "tinidazole",
+      "totalPills": 5,
+      "pillsPerDose": 2,
+      "frequency": 1,
+      "dosesTaken": 2,
+      "reminderTimes": [
+        "<s>08:00</s>"
+      ]
+    },
+    {
+      "id": "61db",
+      "name": "tinidazole",
+      "totalPills": 5,
+      "pillsPerDose": 2,
+      "frequency": 2,
+      "dosesTaken": 2,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "<s>14:00</s>"
+      ]
+    },
+    {
+      "id": "48d1",
+      "name": "tinidazole",
+      "totalPills": 30,
+      "pillsPerDose": 2,
+      "frequency": 2,
+      "dosesTaken": 2,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "<s>14:00</s>"
+      ]
+    },
+    {
+      "id": "6405",
+      "name": "tinidazole",
+      "totalPills": 30,
+      "pillsPerDose": 2,
+      "frequency": 2,
+      "dosesTaken": 2,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "<s>14:00</s>"
+      ]
+    },
+    {
+      "id": "bde3",
+      "name": "tinidazole",
+      "totalPills": 30,
+      "pillsPerDose": 2,
+      "frequency": 3,
+      "dosesTaken": 1,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "14:00",
+        "20:00"
+      ]
+    },
+    {
+      "id": "5cf1",
+      "name": "tinidazole",
+      "totalPills": 30,
+      "pillsPerDose": 2,
+      "frequency": 2,
+      "dosesTaken": 1,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "14:00"
+      ]
     }
   ]
 }

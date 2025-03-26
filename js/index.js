@@ -1,16 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
-    getMedications()
+    Notification.requestPermission()
+        .then(permission => {
+            if (permission === "granted") {
+                console.log("Notifications permitted");
+            } else {
+                console.log("Notifications blocked by user");
+            }
+        })
+        .catch(error => {
+            console.error("Error requesting notification permission:", error);
+        });
+
+    getMedications();
+    checkReminders();
+    resetAtMidnight();
 });
 
 let medications = [];
 
-function calculateReminderTimes (frequency) {
+function calculateReminderTimes(frequency) {
     const times = {
         1: ['08:00'],
-        2: ['08:00', '20:00'],
-        3: ['08:00', '20:00']
-    }
-    return times [frequency] || []
+        2: ['08:00', '14:00'],
+        3: ['08:00', '14:00', '20:00']
+    };
+    return times[frequency] || [];
 }
 
 document.querySelector('#form').addEventListener('submit', async function (event) {
@@ -32,7 +46,7 @@ document.querySelector('#form').addEventListener('submit', async function (event
         pillsPerDose: Number(pillsPerDose),
         frequency: Number(frequency),
         dosesTaken: 0,
-        reminderTimes : calculateReminderTimes(frequency)
+        reminderTimes: calculateReminderTimes(frequency)
     };
 
     try {
@@ -46,12 +60,11 @@ document.querySelector('#form').addEventListener('submit', async function (event
         });
 
         await response.json();
-        getMedications()
+        getMedications();
     } catch (error) {
         console.error("Error adding medication:", error);
     }
 });
-
 
 function getMedications() {
     fetch('http://localhost:3000/medications', {
@@ -61,28 +74,15 @@ function getMedications() {
     .then(response => response.json())
     .then(data => {
         console.log("Fetched medications:", data);
-
         clearMedications();
-
-        if (Array.isArray(data) && data.length > 0) {
-            data.forEach(displayMedication);
-        } else {
-            console.warn("No medications found.");
-        }
+        data.forEach(displayMedication);
     })
     .catch(error => console.error("Error fetching medications:", error));
 }
 
-
 function displayMedication(medication) {
-    if (!medication || !medication.name) {
-        console.error("Invalid medication data:", medication);
-        return;
-    }
-
     const listOfMedications = document.querySelector('tbody#medication-list');
     const row = document.createElement('tr');
-
     const dosesTaken = medication.dosesTaken || 0;
     const totalPills = medication.totalPills || 0;
     const pillsPerDose = medication.pillsPerDose || 1;
@@ -98,64 +98,150 @@ function displayMedication(medication) {
         <td><button class="btn-taken" data-id="${medication.id}">Taken</button></td>
         <td><button class="btn-delete" data-id="${medication.id}">Delete</button></td>
     `;
-
     listOfMedications.appendChild(row);
 }
-
 
 function clearMedications() {
     document.querySelector('tbody#medication-list').innerHTML = '';
 }
 
-
-async function updateMedication(id) {
-    try {
-        const response = await fetch(`http://localhost:3000/medications/${id}`);
-        const medication = await response.json();
-
-        const updatedData = { dosesTaken: medication.dosesTaken + 1 };
-
-        await fetch(`http://localhost:3000/medications/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedData)
-        });
-
-        getMedications()
-    } catch (error) {
-        console.error("Error updating medication:", error);
-    }
-}
-
-
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('btn-taken')) {
+document.addEventListener("click", async function (event) {
+    if (event.target.classList.contains("btn-taken")) {
         const medicationId = event.target.dataset.id;
-        if (medicationId) updateMedication(medicationId);
+        try {
+            const response = await fetch(`http://localhost:3000/medications/${medicationId}`);
+            const medication = await response.json();
+
+            const updatedDoses = (medication.dosesTaken || 0) + 1;
+            const updatedReminderTimes = updateReminderTimes(medication.reminderTimes);
+
+            await fetch(`http://localhost:3000/medications/${medicationId}`, {
+                method: "PATCH",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ 
+                    dosesTaken: updatedDoses,
+                    reminderTimes: updatedReminderTimes
+                })
+            });
+
+            getMedications();
+        } catch (error) {
+            console.error("Error updating medication:", error);
+        }
+    }
+    if (event.target.classList.contains("btn-delete")) {
+        const medicationId = event.target.dataset.id;
+        if (confirm("Are you sure you want to delete this medication?")) {
+            try {
+                await fetch(`http://localhost:3000/medications/${medicationId}`, {
+                    method: "DELETE",
+                    headers: { "Accept": "application/json" }
+                });
+                getMedications();
+            } catch (error) {
+                console.error("Error deleting medication:", error);
+            }
+        }
     }
 });
 
+function updateReminderTimes(reminderTimes) {
+    if (!reminderTimes || reminderTimes.length === 0) {
+        return [];
+    }
+    for (let i = 0; i < reminderTimes.length; i++) {
+        if (!reminderTimes[i].includes("<s>")) {
+            reminderTimes[i] = `<s>${reminderTimes[i]}</s>`;
+            break;
+        }
+    }
+    return reminderTimes;
+}
 
-async function deleteMedication(id) {
-    try {
-        await fetch(`http://localhost:3000/medications/${id}`, {
-            method: 'DELETE',
-            headers: { 'Accept': 'application/json' }
+async function checkReminders() {
+    console.log("Checking reminders...");
+    setInterval(async function () {
+        const now = new Date();
+        const currentTime = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
         });
 
-        getMedications();
-    } catch (error) {
-        console.error("Error deleting medication:", error);
+        try {
+            const response = await fetch('http://localhost:3000/medications');
+            const medications = await response.json();
+
+            medications.forEach(medication => {
+                if (medication.reminderTimes && medication.reminderTimes.includes(currentTime)) {
+                    const notificationKey = `notified-${medication.id}-${currentTime}`;
+                    
+                    if (!localStorage.getItem(notificationKey)) {
+                        showNotification(`Time to take: ${medication.name}`);
+                        localStorage.setItem(notificationKey, "true");
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("Error fetching medications:", error);
+        }
+    }, 60000);
+}
+
+function showNotification(message) {
+    if (Notification.permission === "granted") {
+        try {
+            new Notification('Medication Reminder', {
+                body: message,
+                icon: '/favicon.ico'
+            });
+            playNotificationSound();
+        } catch (error) {
+            console.error("Error showing notification:", error);
+        }
+    } else {
+        console.warn("Notifications are blocked by the browser.");
+        playNotificationSound();
     }
 }
 
-
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('btn-delete')) {
-        const medicationId = event.target.dataset.id;
-        if (medicationId) deleteMedication(medicationId);
+function playNotificationSound() {
+    try {
+        const audio = new Audio('/assets/notification.mp3');
+        audio.play();
+    } catch (error) {
+        console.error("Error playing notification sound:", error);
     }
-});
+}
+
+function resetAtMidnight() {
+    setInterval(async function () {
+        const now = new Date();
+        if (now.getHours() === 0 && now.getMinutes() === 0) {
+            try {
+                const response = await fetch('http://localhost:3000/medications');
+                const medications = await response.json();
+
+                medications.forEach(async medication => {
+                    await fetch(`http://localhost:3000/medications/${medication.id}`, {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ dosesTaken: 0 })
+                    });
+                });
+
+                localStorage.clear();
+                getMedications();
+            } catch (error) {
+                console.error("Error resetting medications:", error);
+            }
+        }
+    }, 60000);
+}
+
+
+
+
