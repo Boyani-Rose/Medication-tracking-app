@@ -39,10 +39,8 @@ document.querySelector('#form').addEventListener('submit', async function (event
         alert("Please fill all fields before submitting.");
         return;
     }
-    const nextId = await getNextId()
 
     const newMedication = {
-        id: nextId.toString(),
         name: medicationName.value,
         totalPills: Number(pillCount.value),
         pillsPerDose: Number(pillsPerDose.value),
@@ -74,26 +72,6 @@ document.querySelector('#form').addEventListener('submit', async function (event
         console.error("Error adding medication:", error);
     }
 });
-
-async function getNextId() {
-    const response = await fetch("http://localhost:3000/medications");
-    const data = await response.json();
-
-    if (data.length === 0) {
-        return 1;
-    }
-
-    
-    const existingIds = data.map(med => parseInt(med.id, 10)).sort((a, b) => a - b);
-    let newId = 1;
-
-    for (let id of existingIds) {
-        if (id !== newId) break;
-        newId++;
-    }
-
-    return newId;
-}
 
 
 function getMedications() {

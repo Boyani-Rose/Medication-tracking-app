@@ -1,27 +1,15 @@
 {
   "medications": [
     {
-      "id": "1",
+      "id": "3",
       "name": "Amoxicillin",
-      "totalPills": 30,
+      "totalPills": 2,
       "pillsPerDose": 1,
-      "frequency": 3,
+      "frequency": 2,
       "dosesTaken": 0,
       "reminderTimes": [
         "08:00",
-        "14:00",
-        "20:00"
-      ]
-    },
-    {
-      "id": "2",
-      "name": "metronidazole",
-      "totalPills": 30,
-      "pillsPerDose": 2,
-      "frequency": 1,
-      "dosesTaken": 0,
-      "reminderTimes": [
-        "08:00"
+        "14:00"
       ]
     }
   ]
