@@ -211,7 +211,7 @@ function showNotification(message) {
         try {
             new Notification('Medication Reminder', {
                 body: message,
-                // icon: '/favicon.ico'
+                icon: 'take-med-gif.gif',
             });
             playNotificationSound();
         } catch (error) {
