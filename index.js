@@ -30,23 +30,23 @@ function calculateReminderTimes(frequency) {
 document.querySelector('#form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    const medicationName = document.querySelector('#medication-name').value;
-    const pillCount = document.querySelector('#pill-count').value;
-    const pillsPerDose = document.querySelector('#pill-per-dose').value;
-    const frequency = document.querySelector('#autoSizingSelect').value;
+    const medicationName = document.querySelector('#medication-name');
+    const pillCount = document.querySelector('#pill-count');
+    const pillsPerDose = document.querySelector('#pill-per-dose');
+    const frequency = document.querySelector('#autoSizingSelect');
 
-    if (!medicationName || !pillCount || !pillsPerDose || !frequency) {
+    if (!medicationName.value || !pillCount.value || !pillsPerDose.value || !frequency.value) {
         alert("Please fill all fields before submitting.");
         return;
     }
 
     const newMedication = {
-        name: medicationName,
-        totalPills: Number(pillCount),
-        pillsPerDose: Number(pillsPerDose),
-        frequency: Number(frequency),
+        name: medicationName.value,
+        totalPills: Number(pillCount.value),
+        pillsPerDose: Number(pillsPerDose.value),
+        frequency: Number(frequency.value),
         dosesTaken: 0,
-        reminderTimes: calculateReminderTimes(frequency)
+        reminderTimes: calculateReminderTimes(frequency.value)
     };
 
     try {
@@ -61,10 +61,18 @@ document.querySelector('#form').addEventListener('submit', async function (event
 
         await response.json();
         getMedications();
+
+        
+        medicationName.value = "";
+        pillCount.value = "";
+        pillsPerDose.value = "";
+        frequency.value = "";
+        
     } catch (error) {
         console.error("Error adding medication:", error);
     }
 });
+
 
 function getMedications() {
     fetch('http://localhost:3000/medications', {
@@ -128,6 +136,8 @@ document.addEventListener("click", async function (event) {
             });
 
             getMedications();
+
+            
         } catch (error) {
             console.error("Error updating medication:", error);
         }
@@ -201,7 +211,7 @@ function showNotification(message) {
         try {
             new Notification('Medication Reminder', {
                 body: message,
-                icon: '/favicon.ico'
+                // icon: '/favicon.ico'
             });
             playNotificationSound();
         } catch (error) {

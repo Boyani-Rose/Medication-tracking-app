@@ -6,7 +6,7 @@
       "totalPills": 30,
       "pillsPerDose": 2,
       "frequency": 2,
-      "dosesTaken": 3,
+      "dosesTaken": 7,
       "reminderTimes": [
         "<s>08:00</s>",
         "<s>14:00</s>"
@@ -29,6 +29,51 @@
       "name": "ibuprofen",
       "totalPills": 20,
       "pillsPerDose": 2,
+      "frequency": 2,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00",
+        "14:00"
+      ]
+    },
+    {
+      "id": "7757",
+      "name": "Amoxicillin",
+      "totalPills": 30,
+      "pillsPerDose": 2,
+      "frequency": 1,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00"
+      ]
+    },
+    {
+      "id": "191c",
+      "name": "Amoxicillin",
+      "totalPills": 30,
+      "pillsPerDose": 2,
+      "frequency": 1,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00"
+      ]
+    },
+    {
+      "id": "4cb8",
+      "name": "Amoxicillin",
+      "totalPills": 5,
+      "pillsPerDose": 3,
+      "frequency": 1,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00"
+      ]
+    },
+    {
+      "id": "ddb0",
+      "name": "Amoxicillin",
+      "totalPills": 20,
+      "pillsPerDose": 3,
       "frequency": 2,
       "dosesTaken": 0,
       "reminderTimes": [
