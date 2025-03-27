@@ -1,49 +1,40 @@
 {
   "medications": [
     {
-      "id": "de54",
-      "name": "Paracetamol",
+      "id": "1",
+      "name": "metronidazole",
+      "totalPills": 30,
+      "pillsPerDose": 3,
+      "frequency": 3,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00",
+        "14:00",
+        "20:00"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Amoxicillin",
+      "totalPills": 30,
+      "pillsPerDose": 3,
+      "frequency": 2,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00",
+        "14:00"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "ibuprofen",
       "totalPills": 30,
       "pillsPerDose": 1,
       "frequency": 2,
-      "dosesTaken": 2,
-      "reminderTimes": [
-        "<s>08:00</s>",
-        "<s>14:00</s>"
-      ]
-    },
-    {
-      "id": "f152",
-      "name": "Amoxicillin",
-      "totalPills": 30,
-      "pillsPerDose": 1,
-      "frequency": 2,
-      "dosesTaken": 2,
-      "reminderTimes": [
-        "<s>08:00</s>",
-        "<s>14:00</s>"
-      ]
-    },
-    {
-      "id": "4638",
-      "name": "Amoxicillin",
-      "totalPills": 30,
-      "pillsPerDose": 2,
-      "frequency": 1,
       "dosesTaken": 0,
       "reminderTimes": [
-        "08:00"
-      ]
-    },
-    {
-      "id": "f833",
-      "name": "Amoxicillin",
-      "totalPills": 15,
-      "pillsPerDose": 2,
-      "frequency": 1,
-      "dosesTaken": 0,
-      "reminderTimes": [
-        "08:00"
+        "08:00",
+        "14:00"
       ]
     }
   ]
