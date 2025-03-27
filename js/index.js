@@ -109,13 +109,13 @@ document.addEventListener("click", async function (event) {
     if (event.target.classList.contains("btn-taken")) {
         const medicationId = event.target.dataset.id;
         try {
-            const response = await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications/${medicationId}`);
+            const response = await fetch(`'https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications'${medicationId}`);
             const medication = await response.json();
 
             const updatedDoses = (medication.dosesTaken || 0) + 1;
             const updatedReminderTimes = updateReminderTimes(medication.reminderTimes);
 
-            await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications${medicationId}`, {
+            await fetch(`'https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications'${medicationId}`, {
                 method: "PATCH",
                 headers: {
                     "Accept": "application/json",
@@ -136,7 +136,7 @@ document.addEventListener("click", async function (event) {
         const medicationId = event.target.dataset.id;
         if (confirm("Are you sure you want to delete this medication?")) {
             try {
-                await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications${medicationId}`, {
+                await fetch(`'https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications'${medicationId}`, {
                     method: "DELETE",
                     headers: { "Accept": "application/json" }
                 });
@@ -224,7 +224,7 @@ function resetAtMidnight() {
                 const medications = await response.json();
 
                 medications.forEach(async medication => {
-                    await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications${medication.id}`, {
+                    await fetch(`'https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications'${medication.id}`, {
                         method: "PATCH",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ dosesTaken: 0 })
