@@ -1,40 +1,16 @@
 {
   "medications": [
     {
-      "id": "1",
-      "name": "metronidazole",
+      "id": "a253",
+      "name": "ibuprofen",
       "totalPills": 30,
-      "pillsPerDose": 3,
+      "pillsPerDose": 1,
       "frequency": 3,
       "dosesTaken": 0,
       "reminderTimes": [
         "08:00",
         "14:00",
         "20:00"
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Amoxicillin",
-      "totalPills": 30,
-      "pillsPerDose": 3,
-      "frequency": 2,
-      "dosesTaken": 0,
-      "reminderTimes": [
-        "08:00",
-        "14:00"
-      ]
-    },
-    {
-      "id": "4",
-      "name": "ibuprofen",
-      "totalPills": 30,
-      "pillsPerDose": 1,
-      "frequency": 2,
-      "dosesTaken": 0,
-      "reminderTimes": [
-        "08:00",
-        "14:00"
       ]
     }
   ]

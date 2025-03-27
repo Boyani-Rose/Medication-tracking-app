@@ -39,11 +39,8 @@ document.querySelector('#form').addEventListener('submit', async function (event
         alert("Please fill all fields before submitting.");
         return;
     }
-    const nextId = await getNextId()
 
     const newMedication = {
-    
-        id: nextId.toString(),
         name: medicationName.value,
         totalPills: Number(pillCount.value),
         pillsPerDose: Number(pillsPerDose.value),
@@ -77,36 +74,19 @@ document.querySelector('#form').addEventListener('submit', async function (event
 });
 
 
-async function getMedications() {
-    try {
-        const response = await fetch('http://localhost:3000/medications');
-        let data = await response.json();
-
-        // Sort medications by ID before reassigning new IDs
-        data.sort((a, b) => parseInt(a.id) - parseInt(b.id));
-
-        // Reassign IDs sequentially
-        data = data.map((med, index) => ({ ...med, id: (index + 1).toString() }));
-
-        // Update the database with the new IDs
-        await Promise.all(data.map(med => 
-            fetch(`http://localhost:3000/medications/${med.id}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ id: med.id })
-            })
-        ));
-
-        // Update the UI
+function getMedications() {
+    fetch('http://localhost:3000/medications', {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Fetched medications:", data);
         clearMedications();
         data.forEach(displayMedication);
-    } catch (error) {
-        console.error("Error fetching medications:", error);
-    }
+    })
+    .catch(error => console.error("Error fetching medications:", error));
 }
-
 
 function displayMedication(medication) {
     const listOfMedications = document.querySelector('tbody#medication-list');
@@ -131,18 +111,6 @@ function displayMedication(medication) {
 
 function clearMedications() {
     document.querySelector('tbody#medication-list').innerHTML = '';
-}
-async function getNextId() {
-    const response = await fetch("http://localhost:3000/medications");
-    const data = await response.json();
-
-    if (data.length === 0) {
-        return 1;
-    }
-
-    // Find the highest existing ID and increment by 1
-    const maxId = Math.max(...data.map(med => parseInt(med.id, 10)));
-    return maxId + 1;
 }
 
 document.addEventListener("click", async function (event) {
@@ -182,7 +150,7 @@ document.addEventListener("click", async function (event) {
                     method: "DELETE",
                     headers: { "Accept": "application/json" }
                 });
-                await getMedications();
+                getMedications();
             } catch (error) {
                 console.error("Error deleting medication:", error);
             }
@@ -243,7 +211,7 @@ function showNotification(message) {
         try {
             new Notification('Medication Reminder', {
                 body: message,
-                icon: 'take-med-gif.gif',
+                icon: 'take-med-gif.gif'
             });
             playNotificationSound();
         } catch (error) {
