@@ -1,5 +1,5 @@
 header {
-    background-color: #007bff; /* Bootstrap primary blue */
+    background-color: #007bff; 
     color: white;
     padding: 15px 0;
     text-align: center;
@@ -8,9 +8,9 @@ header {
     margin-bottom: 0;
 }
 header, .container, #form, #table-container {
-    width: 100%;  /* Makes all sections span the full width */
-    max-width: 1200px; /* Controls max width for large screens */
-    margin: 0 auto; /* Centers them */
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
 header h1 {
@@ -75,16 +75,16 @@ body {
     border-radius: 8px;
 }
 .container, #form, #table-container {
-    width: 100%; /* Makes them take most of the screen width */
-    max-width: 1200px; /* Prevents them from becoming too wide */
+    width: 100%; 
+    max-width: 1200px; 
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin: 20px auto; /* Centers them */
+    margin: 20px auto; 
 }
 
-/* Center the form elements */
+
 form {
     display: flex;
     justify-content: space-between;
@@ -99,13 +99,7 @@ form {
 }
 
 
-/* #table-container {
-    width: 100%;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-} */
+
 
 
 table {

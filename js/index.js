@@ -50,7 +50,7 @@ document.querySelector('#form').addEventListener('submit', async function (event
     };
 
     try {
-        const response = await fetch('http://localhost:3000/medications', {
+        const response = await fetch('https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -67,7 +67,7 @@ document.querySelector('#form').addEventListener('submit', async function (event
 });
 
 function getMedications() {
-    fetch('http://localhost:3000/medications', {
+    fetch('https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications', {
         method: 'GET',
         headers: { 'Accept': 'application/json' }
     })
@@ -109,13 +109,13 @@ document.addEventListener("click", async function (event) {
     if (event.target.classList.contains("btn-taken")) {
         const medicationId = event.target.dataset.id;
         try {
-            const response = await fetch(`http://localhost:3000/medications/${medicationId}`);
+            const response = await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications/${medicationId}`);
             const medication = await response.json();
 
             const updatedDoses = (medication.dosesTaken || 0) + 1;
             const updatedReminderTimes = updateReminderTimes(medication.reminderTimes);
 
-            await fetch(`http://localhost:3000/medications/${medicationId}`, {
+            await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications${medicationId}`, {
                 method: "PATCH",
                 headers: {
                     "Accept": "application/json",
@@ -136,7 +136,7 @@ document.addEventListener("click", async function (event) {
         const medicationId = event.target.dataset.id;
         if (confirm("Are you sure you want to delete this medication?")) {
             try {
-                await fetch(`http://localhost:3000/medications/${medicationId}`, {
+                await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications${medicationId}`, {
                     method: "DELETE",
                     headers: { "Accept": "application/json" }
                 });
@@ -171,7 +171,7 @@ async function checkReminders() {
         console.log("Checking for reminders at:", currentTime);
 
         try {
-            const response = await fetch('http://localhost:3000/medications');
+            const response = await fetch('https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications');
             const medications = await response.json();
 
             medications.forEach(medication => {
@@ -220,11 +220,11 @@ function resetAtMidnight() {
         const now = new Date();
         if (now.getHours() === 0 && now.getMinutes() === 0) {
             try {
-                const response = await fetch('http://localhost:3000/medications');
+                const response = await fetch('https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications');
                 const medications = await response.json();
 
                 medications.forEach(async medication => {
-                    await fetch(`http://localhost:3000/medications/${medication.id}`, {
+                    await fetch(`https://my-json-server.typicode.com/Boyani-Rose/Medication-tracking-app/medications${medication.id}`, {
                         method: "PATCH",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ dosesTaken: 0 })

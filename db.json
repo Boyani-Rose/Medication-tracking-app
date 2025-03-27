@@ -1,22 +1,49 @@
 {
   "medications": [
     {
-      "id": "1a67",
-      "name": "ibuprofen",
-      "totalPills": 20,
-      "pillsPerDose": 2,
-      "frequency": 2,
-      "dosesTaken": 0,
-      "reminderTimes": [
-        "08:00",
-        "14:00"
-      ]
-    },
-    {
       "id": "3c20",
       "name": "ibuprofen",
       "totalPills": 20,
       "pillsPerDose": 1,
+      "frequency": 3,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00",
+        "14:00",
+        "20:00"
+      ]
+    },
+    {
+      "id": "7841",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 3,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00",
+        "14:00",
+        "20:00"
+      ]
+    },
+    {
+      "id": "d83a",
+      "name": "ibuprofen",
+      "totalPills": 30,
+      "pillsPerDose": 3,
+      "frequency": 3,
+      "dosesTaken": 0,
+      "reminderTimes": [
+        "08:00",
+        "14:00",
+        "20:00"
+      ]
+    },
+    {
+      "id": "3d6b",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 2,
       "frequency": 3,
       "dosesTaken": 0,
       "reminderTimes": [
