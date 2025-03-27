@@ -6,7 +6,7 @@
       "totalPills": 30,
       "pillsPerDose": 2,
       "frequency": 2,
-      "dosesTaken": 2,
+      "dosesTaken": 3,
       "reminderTimes": [
         "<s>08:00</s>",
         "<s>14:00</s>"
