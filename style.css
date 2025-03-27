@@ -1,10 +1,9 @@
 header {
-    background-color: #007bff; /* Bootstrap primary blue */
-    color: white;
+    background-color: #007bff; 
     padding: 15px 0;
     text-align: center;
     width: 100%;
-    position: relative; /* Ensure it stays in the normal flow */
+    position: relative; 
     z-index: 10;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -20,7 +19,7 @@ header p {
     opacity: 0.9;
 }
 body {
-    background-image: url('/assets/clipboard-with-pills-frame.jpg'); 
+    background-image: url('clipboard-with-pills-frame.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
