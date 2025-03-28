@@ -1,14 +1,30 @@
 {
   "medications": [
     {
-      "id": "b21e",
+      "id": "01af",
+      "name": "Amoxicillin",
+      "totalPills": 15,
+      "pillsPerDose": 1,
+      "frequency": 3,
+      "dosesTaken": 3,
+      "reminderTimes": [
+        "<s>08:00</s>",
+        "<s>14:00</s>",
+        "<s>20:00</s>"
+      ]
+    },
+  
+    {
+      "id": "c9da",
       "name": "Amoxicillin",
       "totalPills": 30,
-      "pillsPerDose": 2,
-      "frequency": 1,
-      "dosesTaken": 0,
+      "pillsPerDose": 1,
+      "frequency": 3,
+      "dosesTaken": 3,
       "reminderTimes": [
-        "08:00"
+        "<s>08:00</s>",
+        "<s>14:00</s>",
+        "<s>20:00</s>"
       ]
     }
   ]
